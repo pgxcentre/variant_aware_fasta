@@ -67,7 +67,8 @@ def main(region, maf, out=sys.stdout):
     # Annotate all the variants to get the MAF.
     for variant in variants:
         variant.load_ensembl_annotations()
-    variants = [v for v in variants if (v is None) or (v._info["maf"] > maf)]
+    variants = [v for v in variants if
+                (v._info["maf"] is None) or (v._info["maf"] > maf)]
 
     # Write the pandas dataframe.
     csv_filename = "variants_in_{}_{}-{}.txt".format(

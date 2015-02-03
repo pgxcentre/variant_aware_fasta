@@ -55,11 +55,18 @@ def parse_args():
         help="Filter on the minor allele frequency."
     )
 
+    parser.add_argument(
+        "--maf-exists",
+        action="store_true",
+        help=("If this flag is used, only variants with available Ensembl MAFs"
+              " will be considered.")
+    )
+
     args = parser.parse_args()
-    return args.region, args.maf_over
+    return args.region, args.maf_over, args.maf_exists
 
 
-def main(region, maf, out=sys.stdout):
+def main(region, maf, maf_exists, out=sys.stdout):
     # Get the sequence for the region of interest.
     region = Region.from_str(region)
     sequence = region.sequence
@@ -71,8 +78,17 @@ def main(region, maf, out=sys.stdout):
     # Annotate all the variants to get the MAF.
     for variant in variants:
         variant.load_ensembl_annotations()
-    variants = [v for v in variants if
-                (v._info["maf"] is None) or (v._info["maf"] > maf)]
+    _vars = []
+    for v in variants:
+        v_maf = v._info["maf"]
+        if maf_exists:
+            add = v_maf is not None and v_maf > maf
+        else:
+            add = v_maf is None or v_maf > maf
+        if add:
+            _vars.append(v)
+
+    variants = _vars
 
     # Write the pandas dataframe.
     csv_filename = "variants_in_{}_{}-{}.txt".format(
@@ -133,7 +149,7 @@ class Test(unittest.TestCase):
         program.
         """
         out = StringIO()
-        main("chr11:2549137-2549192", 0, out=out)
+        main("chr11:2549137-2549192", 0, False, out=out)
 
         expected = """> chr11:2549137-2549192 with IUPAC coded variants (maf > 0)
 TGCYRTGTCCCTGTYTTGCAGCTTCCTCMTCRTCCYGGTCTKCYTCATCTTYRGYR
@@ -143,5 +159,5 @@ TGCYRTGTCCCTGTYTTGCAGCTTCCTCMTCRTCCYGGTCTKCYTCATCTTYRGYR
 
 
 if __name__ == "__main__":
-    region, maf = parse_args()
-    main(region, maf)
+    region, maf, maf_exists = parse_args()
+    main(region, maf, maf_exists)

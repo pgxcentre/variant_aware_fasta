@@ -8,6 +8,7 @@ from __future__ import print_function
 import argparse
 import unittest
 import sys
+import logging
 
 try:
     from StringIO import StringIO
@@ -17,6 +18,9 @@ except ImportError:
 from gepyto.structures.region import Region
 from gepyto.structures.variants import variant_list_to_dataframe, SNP
 from gepyto.utils.variants import ensembl_variants_in_region
+
+
+logging.basicConfig(level=logging.ERROR)
 
 
 IUPAC = {

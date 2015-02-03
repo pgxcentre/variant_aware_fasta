@@ -6,6 +6,13 @@
 from __future__ import print_function
 
 import argparse
+import unittest
+import sys
+
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 from gepyto.structures.region import Region
 from gepyto.structures.variants import variant_list_to_dataframe, SNP
@@ -48,7 +55,7 @@ def parse_args():
     return args.region, args.maf_over
 
 
-def main(region, maf):
+def main(region, maf, out=sys.stdout):
     # Get the sequence for the region of interest.
     region = Region.from_str(region)
     sequence = region.sequence
@@ -60,7 +67,7 @@ def main(region, maf):
     # Annotate all the variants to get the MAF.
     for variant in variants:
         variant.load_ensembl_annotations()
-    variants = [v for v in variants if v is None or v > maf]
+    variants = [v for v in variants if (v is None) or (v._info["maf"] > maf)]
 
     # Write the pandas dataframe.
     csv_filename = "variants_in_{}_{}-{}.txt".format(
@@ -109,7 +116,25 @@ def main(region, maf):
     sequence.uid = "chr{}:{}-{} with IUPAC coded variants (maf > {})".format(
         region.chrom, region.start, region.end, maf
     )
-    print(sequence.to_fasta())
+    out.write(sequence.to_fasta())
+
+
+class Test(unittest.TestCase):
+    def setUp(self):
+        pass
+
+    def test_no_filter(self):
+        """This test case was given by Mathieu as an sample output of the
+        program.
+        """
+        out = StringIO()
+        main("chr11:2549137-2549192", 0, out=out)
+
+        expected = """> chr11:2549137-2549192 with IUPAC coded variants (maf > 0)
+TGCYRTGTCCCTGTYTTGCAGCTTCCTCMTCRTCCYGGTCTKCYTCATCTTYRGYR
+"""
+
+        self.assertEqual(out.getvalue(), expected)
 
 
 if __name__ == "__main__":

@@ -89,6 +89,10 @@ def main(region, maf, maf_exists, out=sys.stdout):
             _vars.append(v)
 
     variants = _vars
+    if len(variants) == 0:
+        raise Exception("Couldn't find any variant in this region (using "
+                        "Ensembl's API) or all the variants were filtered "
+                        "out.")
 
     # Write the pandas dataframe.
     csv_filename = "variants_in_{}_{}-{}.txt".format(

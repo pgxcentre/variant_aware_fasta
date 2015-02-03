@@ -59,20 +59,20 @@ database.
 The previous call also generated a tab separated file named
 `variants_in_11_2549137-2549192.txt` containing the following information:
 
-chrom|pos|rs|ref|alt|evidence|maf|most_severe_consequence
------|---|--|---|---|--------|---|-------------------------
-11|2549140|rs377350869|C|T|ESP||Intron variant
-11|2549141|rs28730661|G|A|Multiple_observations,Frequency,1000Genomes,ESP|0.00826446|Intron variant
-11|2549151|rs201682200|C|T|Multiple_observations,Frequency,ESP||Splice region variant
-11|2549165|rs199472684|A|C|Cited||Missense variant
-11|2549168|rs199473449|G|A|Cited||Missense variant
-11|2549172|rs199472685|T|C|Cited||Missense variant
-11|2549178|rs199472686|G|T|Cited||Missense variant
-11|2549180|rs199473450|C|T|Cited||Missense variant
-11|2549188|rs149143353|C|T|Frequency,ESP||Synonymous variant
-11|2549189|rs120074192|A|G|Multiple_observations,Cited||Missense variant
-11|2549191|rs377520734|C|T|ESP||Synonymous variant
-11|2549192|rs199472687|G|A|Cited||Missense variant
+chrom | pos | rs | ref | alt | evidence | maf | most_severe_consequence
+----- | --- | -- | --- | --- | -------- | --- | -------------------------
+11 | 2549140 | rs377350869 | C | T | ESP |  | Intron variant
+11 | 2549141 | rs28730661 | G | A | Multiple_observations,Frequency,1000Genomes,ESP | 0.00826446 | Intron variant
+11 | 2549151 | rs201682200 | C | T | Multiple_observations,Frequency,ESP |  | Splice region variant
+11 | 2549165 | rs199472684 | A | C | Cited |  | Missense variant
+11 | 2549168 | rs199473449 | G | A | Cited |  | Missense variant
+11 | 2549172 | rs199472685 | T | C | Cited |  | Missense variant
+11 | 2549178 | rs199472686 | G | T | Cited |  | Missense variant
+11 | 2549180 | rs199473450 | C | T | Cited |  | Missense variant
+11 | 2549188 | rs149143353 | C | T | Frequency,ESP |  | Synonymous variant
+11 | 2549189 | rs120074192 | A | G | Multiple_observations,Cited |  | Missense variant
+11 | 2549191 | rs377520734 | C | T | ESP |  | Synonymous variant
+11 | 2549192 | rs199472687 | G | A | Cited |  | Missense variant
 
 ## Testing
 

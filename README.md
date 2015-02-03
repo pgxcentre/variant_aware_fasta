@@ -73,3 +73,11 @@ chrom|pos|rs|ref|alt|evidence|maf|most_severe_consequence
 11|2549189|rs120074192|A|G|Multiple_observations,Cited||Missense variant
 11|2549191|rs377520734|C|T|ESP||Synonymous variant
 11|2549192|rs199472687|G|A|Cited||Missense variant
+
+## Testing
+
+Very basic testing is also available:
+
+```bash
+python -m unittest -q variant_aware_fasta
+```

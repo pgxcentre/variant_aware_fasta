@@ -48,12 +48,16 @@ Optional arguments are `--maf-over` to filter for common variants and
 `--maf-exists` to keep only variants that have a _MAF_ defined by the Ensembl
 database.
 
+The reverse complement of the sequence is also output.
+
 ## Example
 
 ```bash
 ./variant_aware_fasta.py chr11:2549137-2549192
 # > chr11:2549137-2549192 with IUPAC coded variants (maf > 0)
 # TGCYRTGTCCCTGTYTTGCAGCTTCCTCMTCRTCCYGGTCTKCYTCATCTTYRGYR
+# > reversed_compl_chr11:2549137-2549192 with IUPAC coded variants (maf > 0)
+# YRCYRAAGATGARGMAGACCRGGAYGAKGAGGAAGCTGCAARACAGGGACAYRGCA
 ```
 
 The previous call also generated a tab separated file named

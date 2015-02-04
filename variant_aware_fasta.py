@@ -174,6 +174,7 @@ def main(region, maf, maf_exists, out=sys.stdout):
         region.chrom, region.start, region.end, maf
     )
     out.write(sequence.to_fasta())
+    out.write(sequence.reverse_complement().to_fasta())
 
 
 class Test(unittest.TestCase):

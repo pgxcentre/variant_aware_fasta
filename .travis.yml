@@ -3,5 +3,7 @@ python:
   - "2.7"
   - "3.3"
   - "3.4"
-install: "pip install git+git://github.com/legaultmarc/gepyto.git@master"
+install:
+  - "pip install pyfaidx"
+  - "pip install git+git://github.com/legaultmarc/gepyto.git@master"
 script: "python -m unittest -q variant_aware_fasta"

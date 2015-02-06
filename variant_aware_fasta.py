@@ -190,6 +190,8 @@ class Test(unittest.TestCase):
 
         expected = """> chr11:2549137-2549192 with IUPAC coded variants (maf > 0)
 TGCYRTGTCCCTGTYTTGCAGCTTCCTCMTCRTCCYGGTCTKCYTCATCTTYRGYR
+> reversed_compl_chr11:2549137-2549192 with IUPAC coded variants (maf > 0)
+YRCYRAAGATGARGMAGACCRGGAYGAKGAGGAAGCTGCAARACAGGGACAYRGCA
 """
 
         self.assertEqual(out.getvalue(), expected)

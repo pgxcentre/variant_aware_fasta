@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/pgxcentre/variant_aware_fasta.svg?branch=master)](https://travis-ci.org/pgxcentre/variant_aware_fasta)
+
+
 ## Introduction
 
 This is a simple script to generate fasta formatted sequences that include

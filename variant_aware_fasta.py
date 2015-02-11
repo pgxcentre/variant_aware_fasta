@@ -109,7 +109,12 @@ def main(region, maf, maf_exists, out=sys.stdout):
 
     # Annotate all the variants to get the MAF.
     for variant in variants:
-        variant.load_ensembl_annotations()
+        if variant.rs is not None:
+            variant.load_ensembl_annotations()
+        else:
+            if not hasattr(variant, "_info"):
+                variant._info = {}
+            variant._info["maf"] = None
     _vars = []
     for v in variants:
         v_maf = v._info["maf"]
